@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="./images/favicon/movies32.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="16x16"
+      href="./images/favicon/movies16.png"
+    />
+    <title>Filmoteka-My-Library</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./sass/index.scss" />
+    <script type="module" src="./library.js"></script>
+  </head>
+  <body>
+    <header class="header__library">
+      <div class="container">
+        <nav class="nav__menu">
+          <a class="logo__link" href="./index.html">
+            <img
+              src="./images/film.svg"
+              class="logo__img"
+              alt="film-icon"
+              width="24"
+              height="24"
+            />
+            <span class="logo__link-text">Filmoteka </span>
+            <ul class="nav__list">
+              <li class="nav__item">
+                <a class="nav__link" href="./index.html">home</a>
+              </li>
+              <li class="nav__item">
+                <a class="nav__link current" href="./library.html"
+                  >my library</a
+                >
+              </li>
+            </ul>
+          </a>
+        </nav>
+        <ul class="filter__list">
+          <li class="filter__item">
+            <button class="filter_btn current watched_btn" type="button">
+              watched
+            </button>
+          </li>
+          <li class="filter__item">
+            <button class="filter_btn queue_btn" type="button">queue</button>
+          </li>
+        </ul>
+      </div>
+    </header>
+    <div class="wrapper">
+      <main>
+        <div class="container">
+          <ul class="film__list" data-modal-open></ul>
+        </div>
+      </main>
+      <footer class="footer">
+        <div class="container">
+          <p class="footer__text">&#169; 2022 | All Rights Reserved |</p>
+          <p class="footer__text">
+            Developed with <span class="heart">&#10084;</span> by
+            <button type="button" class="team-modal-btn" data-team-modal-open>
+              GoIT Students
+            </button>
+          </p>
+        </div>
+      </footer>
+    </div>
+
+    <div class="backdrop is-hidden" data-team-modal data-team-modal-close>
+      <div class="team-modal">
+        <button
+          class="btn-team-modal-close"
+          type="button"
+          data-team-modal-close-btn
+        >
+          <svg class="btn-team-modal-close__svg">
+            <use href="./images/symbol-defs.svg#icon-VectorX"></use>
+          </svg>
+        </button>
+        <p class="team-modal__text">Team:</p>
+        <p class="team-header">10 out of 10</p>
+        <ul class="team-modal-leader__list list">
+          <li class="team-modal-leader__item">
+            <img
+              src="./images/pidvysotskyi-ph.jpg"
+              alt="photo"
+              class="team-modal-leader__img"
+            />
+            <p class="team-modal-leader__name">Oleksandr Pidvysotskyi</p>
+            <p class="team-modal-leader__text">Teamlead</p>
+          </li>
+          <li class="team-modal-leader__item">
+            <img
+              src="./images/maliovanyi-ph.jpg"
+              alt="photo"
+              class="team-modal-leader__img"
+            />
+            <div class="team-modal-leader__thumb">
+              <p class="team-modal-leader__name">Bohdan Maliovanyi</p>
+              <p class="team-modal-leader__text">Scrum master</p>
+            </div>
+          </li>
+        </ul>
+        <ul class="team-modal-dev__list list">
+          <li class="team-modal-dev__item">
+            <img
+              src="./images/gurgu-ph.jpg"
+              alt="photo"
+              class="team-modal-dev__img"
+            />
+            <p class="team-modal-dev__name">Pavlo Gurgu</p>
+            <p class="team-modal-dev__text">Developer</p>
+          </li>
+          <li class="team-modal-dev__item">
+            <img
+              src="./images/hushchin-ph.jpg"
+              alt="photo"
+              class="team-modal-dev__img"
+            />
+            <p class="team-modal-dev__name">Viktor Hushchin</p>
+            <p class="team-modal-dev__text">Developer</p>
+          </li>
+          <li class="team-modal-dev__item">
+            <img
+              src="./images/horshkoder-ph.jpg"
+              alt="photo"
+              class="team-modal-dev__img"
+            />
+            <p class="team-modal-dev__name">Oleksandr Horshkoder</p>
+            <p class="team-modal-dev__text">Developer</p>
+          </li>
+          <li class="team-modal-dev__item">
+            <img
+              src="./images/panivnyk-ph.jpg"
+              alt="photo"
+              class="team-modal-dev__img"
+            />
+            <p class="team-modal-dev__name">Dmytro Panivnyk</p>
+            <p class="team-modal-dev__text">Developer</p>
+          </li>
+          <li class="team-modal-dev__item">
+            <img
+              src="./images/podvalnyi-ph.jpg"
+              alt="photo"
+              class="team-modal-dev__img"
+            />
+            <p class="team-modal-dev__name">Ihor Podvalnyi</p>
+            <p class="team-modal-dev__text">Developer</p>
+          </li>
+          <li class="team-modal-dev__item">
+            <img
+              src="./images/shperun-ph.jpg"
+              alt="photo"
+              class="team-modal-dev__img"
+            />
+            <p class="team-modal-dev__name">Marian Shperun</p>
+            <p class="team-modal-dev__text">Developer</p>
+          </li>
+          <li class="team-modal-dev__item">
+            <img
+              src="./images/cat.jpg"
+              alt="photo"
+              class="team-modal-dev__img"
+            />
+            <p class="team-modal-dev__name">Daniil Sorokin</p>
+            <p class="team-modal-dev__text">Developer</p>
+          </li>
+          <li class="team-modal-dev__item">
+            <img
+              src="./images/shalnov-ph.jpg"
+              alt="photo"
+              class="team-modal-dev__img"
+            />
+            <p class="team-modal-dev__name">Ivan Shalnov</p>
+            <p class="team-modal-dev__text">Developer</p>
+          </li>
+          <li class="team-modal-dev__item">
+            <img
+              src="./images/tykhonenko-ph.jpg"
+              alt="photo"
+              class="team-modal-dev__img"
+            />
+            <p class="team-modal-dev__name">Maksym Tykhonenko</p>
+            <p class="team-modal-dev__text">Developer</p>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="backdrop is-hidden" data-film-modal data-modal-close>
+      <div class="modal-film" id="">
+        <button class="btn-modal-close" type="button" data-modal-close-btn>
+          <svg class="btn-modal-close__svg">
+            <use href="./images/symbol-defs.svg#icon-VectorX"></use>
+          </svg>
+        </button>
+        <div class="modal-film__film-card" data-film-card></div>
+      </div>
+    </div>
+  </body>
+</html>
