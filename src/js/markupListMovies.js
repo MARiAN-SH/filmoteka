@@ -1,6 +1,6 @@
 import { getTrending } from './getTrending.js';
-import { getGenreById } from './getGenreById.js';
-import { refs } from '../index.js';
+import { refs } from './js/refs';
+
 const srcImgBase = 'https://image.tmdb.org/t/p/w500';
 let currentPage = 1;
 

@@ -1,50 +1,52 @@
-import { getById } from './getById';
-import filmCardTemplate from '../hbs/modal-film-card.hbs';
-const refs = {
-  openFilmModal: document.querySelector('[data-modal-open]'),
-  closeFilmModal: document.querySelector('[data-modal-close]'),
-  closeFilmModalBtn: document.querySelector('[data-modal-close-btn]'),
-  filmModal: document.querySelector('[data-film-modal]'),
-  filmCard: document.querySelector('[data-film-card]'),
-  modalFilm: document.querySelector('.modal-film'),
-  addToWatchedBtn: document.querySelector('.modal-film'),
-};
+import { refs } from './reference';
+import { getById, delMmovie } from './localStorageApi';
+import filmCardTemplate from './templates/modal-film-card.hbs';
+
+const {
+  openFilmModal,
+  closeFilmModal,
+  closeFilmModalBtn,
+  filmModal,
+  filmCard,
+  modalFilm,
+} = refs;
 
 let filmId = '';
 
-refs.openFilmModal.addEventListener('click', onCardClick);
-
-export function openFilmModal() {
-  refs.filmModal.classList.remove('is-hidden');
-  refs.closeFilmModal.addEventListener('click', closeFilmModal);
-  refs.closeFilmModalBtn.addEventListener('click', closeFilmModal);
-  window.addEventListener('keydown', closeFilmModal);
+function openFilmModalFn() {
+  filmModal.classList.remove('is-hidden');
+  closeFilmModal.addEventListener('click', closeFilmModalFn);
+  closeFilmModalBtn.addEventListener('click', closeFilmModalFn);
+  window.addEventListener('keydown', closeFilmModalFn);
+  delMmovie();
 }
 
-export function closeFilmModal(e) {
-  if (
-    e.target === refs.closeFilmModal ||
-    e.currentTarget === refs.closeFilmModalBtn
-  ) {
-    refs.filmModal.classList.add('is-hidden');
+function closeFilmModalFn(e) {
+  if (e.target === closeFilmModal || e.currentTarget === closeFilmModalBtn) {
+    filmModal.classList.add('is-hidden');
+    document.querySelector('body').classList.remove('no-scroll');
+
     return;
   } else if (e.key === 'Escape') {
-    refs.filmModal.classList.add('is-hidden');
-    window.removeEventListener('keydown', closeFilmModal);
+    filmModal.classList.add('is-hidden');
+    window.removeEventListener('keydown', closeFilmModalFn);
+
+    // пропадає scroll bar ??? якщо закоментовано
+    // document.querySelector('body').classList.remove('no-scroll');
   }
 }
 
-export function renderFilmInfo(filmData) {
+function renderFilmInfo(filmData) {
   const watchedMovies = JSON.parse(localStorage.getItem('watchedMovies'));
   const moviesInQueue = JSON.parse(localStorage.getItem('moviesInQueue'));
   const markup = filmCardTemplate(filmData);
 
-  refs.filmCard.innerHTML = markup;
-  const watchedButton = refs.filmCard.querySelector('#watched');
+  filmCard.innerHTML = markup;
+  const watchedButton = filmCard.querySelector('#watched');
   if (watchedMovies.find(element => element.id === Number(filmId))) {
     watchedButton.textContent = 'REMOVE FROM WATCHED';
   }
-  const queuedButton = refs.filmCard.querySelector('#queue');
+  const queuedButton = filmCard.querySelector('#queue');
   if (moviesInQueue.find(element => element.id === Number(filmId))) {
     queuedButton.textContent = 'REMOVE FROM QUEUE';
   }
@@ -52,14 +54,23 @@ export function renderFilmInfo(filmData) {
   return Promise.resolve();
 }
 
-export function onCardClick(event) {
+function onCardClick(event) {
+  event.stopPropagation();
+  document.querySelector('body').classList.add('no-scroll');
+
   if (event.target.className === 'img') {
     filmId = event.target.getAttribute('id');
     filmId && showFilmInfo(filmId);
-    refs.modalFilm.id = filmId;
-    openFilmModal();
+    modalFilm.id = filmId;
+    openFilmModalFn();
   }
 }
-export function showFilmInfo(movieId) {
-  getById(movieId).then(renderFilmInfo).then(openFilmModal).catch(console.log);
+
+function showFilmInfo(movieId) {
+  getById(movieId)
+    .then(renderFilmInfo)
+    .then(openFilmModalFn)
+    .catch(console.log);
 }
+
+export default openFilmModal.addEventListener('click', onCardClick);

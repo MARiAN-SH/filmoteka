@@ -29,7 +29,7 @@ function movieTemplate(data) {
   } else if (filmGenre.length < 3) {
     renderGanres = filmGenre.join(',&nbsp;');
   } else {
-    renderGanres = `${filmGenre[0]}, ${filmGenre[1]}, Others`;
+    renderGanres = `${filmGenre[0]} ${filmGenre[1]} Others`;
   }
 
   return `<li class="gallery__item" data-itemid="${data.id}">

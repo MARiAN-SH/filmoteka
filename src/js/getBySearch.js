@@ -1,8 +1,7 @@
 import { API_KEY } from './key.js';
 import Notiflix from 'notiflix';
-import Loading from './loading';
 import { loadingOn, loadingOff } from './loading';
-import { getGenreById } from './getGenreById.js';
+import { getGenreById } from './getGenres';
 
 const refs = {
   searchForm: document.querySelector('#search-form'),

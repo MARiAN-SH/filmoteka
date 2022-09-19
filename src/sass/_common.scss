@@ -1,11 +1,11 @@
 @import '~node_modules/modern-normalize/modern-normalize.css';
-html{
+html {
   height: 100%;
 }
 
 body {
   height: calc(100% - 217px);
-  
+
   font-family: 'Roboto', sans-serif;
   color: var(--main-text-color);
   font-size: 12px;
@@ -13,7 +13,9 @@ body {
   line-height: 1.17;
   overflow-x: hidden;
 }
-
+body.no-scroll {
+  overflow-y: hidden;
+}
 .wrapper {
   display: flex;
   flex-direction: column;
@@ -24,4 +26,16 @@ main {
 }
 .footer {
   flex: 0 0 auto;
+}
+
+.container {
+  max-width: 280px;
+  margin: auto;
+  padding: 0 10px;
+  @include tablet {
+    max-width: 704px;
+  }
+  @include desktop {
+    max-width: 1216px;
+  }
 }

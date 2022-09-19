@@ -1,13 +1,7 @@
 import { getTrending } from './getTrending';
-import Loading from './loading';
 import { loadingOn, loadingOff } from './loading';
-import { getGenreById } from './getGenreById.js';
-import { getGenres } from './getGenres.js';
+import { getGenres, getGenreById } from './getGenres.js';
 
-const refs = {
-  moviesList: document.querySelector('.film__list'),
-};
-const API_KEY = '520faa847257d57af54017c37ef43fe0';
 //end temp temporary constants
 let totalPages = 1;
 let markup = ``;

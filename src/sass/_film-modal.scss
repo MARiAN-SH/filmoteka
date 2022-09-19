@@ -21,15 +21,17 @@
   display: flex;
   flex-direction: column;
   overflow-y: auto;
-  height: 95vh;
+  // height: 95vh;
   width: 280px;
 
   background: rgba(255, 255, 255, 1);
   animation-name: rotate;
   animation-duration: 2500ms;
-}
-@media screen and (min-width: 768px) {
-  .modal-film {
+
+  @include mobil {
+    width: 300px;
+  }
+  @include tablet {
     height: 552px;
     width: 704px;
     padding-top: 40px;
@@ -37,9 +39,7 @@
     padding-bottom: 40px;
     padding-left: 36px;
   }
-}
-@media screen and (min-width: 1024px) {
-  .modal-film {
+  @media screen and (min-width: 1024px) {
     height: 558px;
     width: 806px;
     padding-top: 40px;
@@ -99,6 +99,11 @@
   height: auto;
   width: 240px;
   border-radius: 5px;
+
+  @include mobil {
+    max-width: 160px;
+    margin: auto;
+  }
 }
 
 @media screen and (min-width: 768px) {
@@ -172,8 +177,73 @@
   margin-bottom: 8px;
 }
 .modal-film__about-film {
+  position: relative;
   margin-bottom: 20px;
 }
+
+// details {
+//   position: relative;
+//   // overflow: hidden;
+// }
+
+details summary::marker {
+  font-size: 0;
+  color: red;
+}
+
+summary {
+  display: inline-block;
+  padding-left: 15px;
+  cursor: pointer;
+}
+
+summary::before {
+  content: '▶';
+  position: absolute;
+  top: 0;
+  left: 0;
+  color: var(--orange-text-color);
+  transform: rotate(0);
+  transform-origin: center;
+  transition: 0.2s transform ease;
+}
+details[open] > summary:before {
+  transform: rotate(90deg);
+  transition: transform 0.45s ease;
+}
+
+.modal-film__about {
+  margin-bottom: 8px;
+  font-family: Roboto;
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 16px;
+  letter-spacing: 0em;
+  text-align: left;
+}
+.modal-film__about-text {
+  font-family: Roboto;
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 20px;
+  letter-spacing: 0em;
+
+  overflow: auto;
+  @include mobil {
+    position: absolute;
+  }
+  @include tablet {
+    height: auto;
+    max-height: 160px;
+  }
+}
+
+details[open] > p.modal-film__about-text {
+  padding-right: 15px;
+  background-color: #fff;
+  z-index: 1;
+}
+
 .modal-film__generat-data {
   color: rgba(0, 0, 0, 1);
 }
@@ -203,29 +273,6 @@
   }
 }
 
-.modal-film__about {
-  margin-bottom: 8px;
-  font-family: Roboto;
-  font-size: 12px;
-  font-weight: 500;
-  line-height: 16px;
-  letter-spacing: 0em;
-  text-align: left;
-}
-.modal-film__about-text {
-  font-family: Roboto;
-  font-size: 12px;
-  font-weight: 500;
-  line-height: 20px;
-  letter-spacing: 0em;
-  text-align: left;
-  height: 40px;
-  overflow-y: auto;
-  @include tablet {
-    height: auto;
-    max-height: 160px;
-  }
-}
 .modal-film__btn-grup {
   display: flex;
   flex-direction: row;
@@ -242,6 +289,9 @@
   line-height: 16px;
   letter-spacing: 0em;
   text-align: center;
+  color: black;
+
+  border: 2px solid var(--orange-text-color);
   background: rgba(255, 255, 255, 1);
   cursor: pointer;
   &:hover,

@@ -9,9 +9,9 @@ function scrollFunction() {
     document.body.scrollTop > 1200 ||
     document.documentElement.scrollTop > 1200
   ) {
-    scrollBtn.classList.remove('is-hidden');
+    scrollBtn.classList.add('show-btn');
   } else {
-    scrollBtn.classList.add('is-hidden');
+    scrollBtn.classList.remove('show-btn');
   }
 }
 

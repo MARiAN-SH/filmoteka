@@ -14,16 +14,7 @@
   }
 }
 
-.container {
-  width: 280px;
-  margin: auto;
-  @include tablet {
-    width: 704px;
-  }
-  @include desktop {
-    width: 1216px;
-  }
-}
+
 
 .nav__menu {
   display: flex;
@@ -72,7 +63,7 @@
 }
 
 .nav__link.current {
-  border-bottom: 3px solid var(--orange-text-color);;
+  border-bottom: 3px solid var(--orange-text-color);
 }
 
 .input {
