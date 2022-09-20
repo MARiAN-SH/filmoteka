@@ -1,75 +1,28 @@
 import { getTrending } from './getTrending';
 import { loadingOn, loadingOff } from './loading';
-import { getGenres, getGenreById } from './getGenres.js';
+import { checkLocalStorageGenres } from './localStorageApi';
+import { renderCollection } from './templates/movieTemplate';
 
+import { refs } from './reference';
+const { moviesList } = refs;
 //end temp temporary constants
 let totalPages = 1;
-let markup = ``;
+let markup = '';
 let currentPage = 1;
-const srcImgBase = 'https://image.tmdb.org/t/p/w500';
+
 export default async function renderMoviesList(pageNumber) {
   currentPage = pageNumber;
-  if (localStorage.getItem('genres') === null) {
-    await getGenres().then(({ genres }) => {
-      localStorage.setItem('genres', JSON.stringify(genres));
-    });
-  }
+
+  checkLocalStorageGenres();
+
   await getTrending(currentPage).then(res => {
     totalPages = res.total_pages;
-    const moviesResult = res.results;
-    // const genresList = res[0].genres;
-    if (moviesResult.length >= 1) {
-      markup = moviesResult.map(
-        ({
-          id,
-          title,
-          original_title,
-          poster_path,
-          genre_ids,
-          release_date,
-          vote_average,
-        }) => {
-          const genresList = JSON.parse(localStorage.getItem('genres'));
-          const genres = genre_ids.map(item => {
-            return getGenreById(item, genresList);
-          });
-          // check for genres available and formatting their
-          let genresMarkup = '';
-          if (genres.length === 0) {
-            genresMarkup = 'No genres';
-          } else if (genres.length < 3) {
-            genresMarkup = genres.join(',&nbsp;');
-          } else {
-            genresMarkup = `${genres[0]}, ${genres[1]}, Others`;
-          }
-          // check for poster available
-          let poster = '';
-          poster_path === null
-            ? (poster = '/uc4RAVW1T3T29h6OQdr7zu4Blui.jpg')
-            : (poster = poster_path);
-          // check for the presence of a date
-          let relDate = '';
-          release_date === '' || release_date === undefined
-            ? (relDate = 'No date')
-            : (relDate = release_date.slice(0, 4));
-
-          return `<li class="gallery__item">
-            <img src="${srcImgBase}${poster}" alt="${original_title}" class="img" id="${id}" />
-            <div class="item__ptext">
-              <h2 class="item__capt">${title}</h2>
-              <div class="item__wrap">
-                <p class="item__genre">${genresMarkup} | ${relDate}</p>
-              </div>
-            </div>
-          </li>`;
-        }
-      );
-
-      return markup;
-    }
+    moviesList.innerHTML = '';
+    return (markup = renderCollection(res));
   });
 }
 
+// pagination=====================
 async function addPagination() {
   await renderMoviesList(1);
   $(`#pagination-container`).addHook('beforePaging', function () {

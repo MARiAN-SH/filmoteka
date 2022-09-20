@@ -6,14 +6,15 @@ export async function getById(movieId) {
     baseURL: 'https://api.themoviedb.org/3/movie',
     params: { api_key: API_KEY },
   });
-  console.log(response);
+  // console.log(response);
   return response.data;
 }
-export async function getByVideo() {
+export async function getByVideo(id) {
   const response = await axios.get(
-    `https://api.themoviedb.org/3/movie/532639/videos?api_key=${API_KEY}&language=en-US`
+    `https://api.themoviedb.org/3/movie/${
+      id || 361743
+    }/videos?api_key=${API_KEY}&language=en-US`
   );
-  console.log(response);
-  return response.data;
+  const keyTreler = response.data.results[0].key;
+  return keyTreler || null;
 }
-// https://youtu.be/gV_0pYoCssc

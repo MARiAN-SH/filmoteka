@@ -1,4 +1,6 @@
 import { getById } from './getById';
+import { getGenres } from './getGenres';
+
 import { refs } from './reference';
 const { modalWindowRef } = refs;
 
@@ -26,12 +28,20 @@ if (getLocalStorageItem('moviesInQueue') === null) {
   moviesInQueue = localStorageArray('moviesInQueue');
 }
 
+export async function checkLocalStorageGenres() {
+  if (getLocalStorageItem('genres') === null) {
+    await getGenres().then(({ genres }) => {
+      localStorage.setItem('genres', JSON.stringify(genres));
+    });
+  }
+}
+
 function checkLocalStorageOnwatch() {
   if (
     getLocalStorageItem('watchedMovies') === null ||
     localStorageArray('watchedMovies').length === 0
   ) {
-   return true;
+    return true;
   }
 
   return false;
