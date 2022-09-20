@@ -57,7 +57,16 @@
     <summary>ABOUT</summary>
     <p class='modal-film__about-text'>
       {{#if overview}}{{overview}}{{else}}<span>We don't have information for this movie.</span>{{/if}}
+          <iframe
+  {{!-- width="560"
+  height="315" --}}
+  src="https://www.youtube.com/embed/{{keyid}}"
+  title="YouTube video player"
+  frameborder="0"
+
+></iframe>
     </p>
+
   </details>
   </div>
   <div class="modal-film__btn-grup">
@@ -68,12 +77,5 @@
                 ADD TO QUEUE
               </button>
             </div>
-              <iframe
-  width="560"
-  height="315"
-  src="https://www.youtube.com/embed/gV_0pYoCssc"
-  title="YouTube video player"
-  frameborder="0"
 
-></iframe>
 </div>

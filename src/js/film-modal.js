@@ -1,6 +1,7 @@
 import { refs } from './reference';
 import { getById, delMmovie } from './localStorageApi';
 import filmCardTemplate from './templates/modal-film-card.hbs';
+import { getByVideo } from './getById';
 
 const {
   openFilmModal,
@@ -12,7 +13,6 @@ const {
 } = refs;
 
 let filmId = '';
-
 function openFilmModalFn() {
   filmModal.classList.remove('is-hidden');
   closeFilmModal.addEventListener('click', closeFilmModalFn);
@@ -68,7 +68,12 @@ function onCardClick(event) {
 
 function showFilmInfo(movieId) {
   getById(movieId)
-    .then(renderFilmInfo)
+    .then(i => {
+      getByVideo(i.id).then(id => {
+        i = { ...i, keyid: id };
+        return renderFilmInfo(i);
+      });
+    })
     .then(openFilmModalFn)
     .catch(console.log);
 }
