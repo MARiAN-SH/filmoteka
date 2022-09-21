@@ -2,7 +2,6 @@ import { getTrending } from './getTrending';
 import { loadingOn, loadingOff } from './loading';
 import { checkLocalStorageGenres } from './localStorageApi';
 import { renderCollection } from './templates/movieTemplate';
-
 import { refs } from './reference';
 const { moviesList } = refs;
 //end temp temporary constants
