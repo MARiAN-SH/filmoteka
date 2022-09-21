@@ -4,7 +4,6 @@ const { moviesList } = refs;
 
 const srcImgBase = 'https://image.tmdb.org/t/p/w500';
 
-
 export function movieTemplate(data) {
   if (data.results) {
     const moviesResult = data.results;
