@@ -1,6 +1,6 @@
 import { getAuth, GoogleAuthProvider, signInWithPopup } from 'firebase/auth';
 import db from '../../firebase/config';
-import { setMoviesInLS } from '../getUserMovis';
+// import { setMoviesInLS } from '../getUserMovis';
 
 export const authGoogle = () => {
   const btnGoogleAuth = document.querySelector('.btnGoogleAuth');
