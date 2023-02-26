@@ -15,13 +15,17 @@
   "author": "Marian Shperun",
   "license": "ISC",
   "dependencies": {
+    "@fortawesome/fontawesome-svg-core": "^6.2.1",
     "aos": "^3.0.0-beta.6",
     "axios": "^0.27.2",
+    "firebase": "^9.16.0",
     "handlebars": "^4.7.7",
     "modern-normalize": "^1.1.0",
     "notiflix": "^3.2.5"
   },
   "devDependencies": {
+    "@parcel/optimizer-data-url": "^2.6.0",
+    "@parcel/transformer-inline-string": "^2.6.0",
     "@parcel/transformer-sass": "^2.6.0",
     "buffer": "^6.0.3",
     "parcel": "^2.6.0",
