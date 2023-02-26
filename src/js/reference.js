@@ -13,15 +13,11 @@ export const refs = {
   queueBtn: document.querySelector('.queue_btn'),
 
   // modal
-  openFilmModal: document.querySelector('[data-modal-open]'),
-  closeFilmModal: document.querySelector('[data-modal-close]'),
-  closeFilmModalBtn: document.querySelector('[data-modal-close-btn]'),
-  filmModal: document.querySelector('[data-film-modal]'),
+  openModal: document.querySelector('[data-modal-open]'),
+  closeModal: document.querySelector('[data-modal-close]'),
+  closeModalBtn: document.querySelector('[data-modal-close-btn]'),
+  modal: document.querySelector('[data-film-modal]'),
   filmCard: document.querySelector('[data-film-card]'),
   modalFilm: document.querySelector('.modal-film'),
-  addToWatchedBtn: document.querySelector('.modal-film'),
-
-  // local storeg
-  modalWindowRef: document.querySelector('.modal-film'),
+  contextModal: document.querySelector('.modal-inner'),
 };
-//  const { navList, moviesList, watchedBtn, queueBtn, linkToTeam } = refs;

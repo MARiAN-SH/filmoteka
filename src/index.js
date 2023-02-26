@@ -1,8 +1,12 @@
 import './js/current_link';
-import './js/scroll-button';
-import './js/film-modal';
-import './js/pagination';
+import './js/profile';
 import './js/getBySearch.js';
+import './js/film-modal';
+import './js/addMoviesInLibrary';
+import './js/pagination';
+import './js/scroll-button';
 import { getByVideo } from './js/getById';
-// import { openTeamModal, closeTeamModal } from './js/team-modal';
 getByVideo();
+import AOS from 'aos';
+import 'aos/dist/aos.css';
+AOS.init();

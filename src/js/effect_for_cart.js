@@ -1,10 +1,7 @@
-import AOS from 'aos';
-import 'aos/dist/aos.css';
 import { refs } from './reference';
 
 const { moviesList } = refs;
 
-AOS.init();
 
 export function addEfectRenderer() {
   for (let i = 0; i < moviesList.children.length; i++) {

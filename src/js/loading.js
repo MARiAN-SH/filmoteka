@@ -11,19 +11,3 @@ export function loadingOn() {
 export function loadingOff() {
   Loading.remove();
 }
-
-/* **************   ІНСТРУКЦІЯ :)   ****************
-* Для використання Loder в своїй функції:
-    * 1) в шапці свого JS файлу підключити:
-
-import { loadingOn, loadingOff } from './loading';
-
-    * 2) там де потрібен запуск Loading, вставляємо:
-
-loadingOn();
-
-    * де потрібно зупинити Loading, вставляемо:
-
-loadingOff();
-
-*/

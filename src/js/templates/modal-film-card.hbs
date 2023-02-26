@@ -1,13 +1,26 @@
 <div class='modal-film__img-block'>
-  <img
-    class='film-img'
-    src='{{#if poster_path}}https://image.tmdb.org/t/p/w500/{{poster_path}}{{^}}./images/film.svg{{/if}}'
-    onerror="this.onerror=null;this.src='https://image.tmdb.org/t/p/w500/uc4RAVW1T3T29h6OQdr7zu4Blui.jpg'"
-    alt='{{title}}'
-    -width='375'
-    height='478'
-  />
-
+  <div class="trailer">
+    <button class="trailer-btnBack"></button>
+    <iframe
+      width="100%"
+      height="100%"
+      title="YouTube video player"
+      frameborder="0"
+      allowfullscreen="true"
+      loading="lazy"
+    ></iframe>
+  </div>
+  <div class="film-img">
+    <img
+      {{!-- class='film-img' --}}
+      src='{{#if poster_path}}https://image.tmdb.org/t/p/w500/{{poster_path}}{{^}}./images/film.svg{{/if}}'
+      onerror="this.onerror=null;this.src='https://image.tmdb.org/t/p/w500/uc4RAVW1T3T29h6OQdr7zu4Blui.jpg'"
+      alt='{{title}}'
+      -width='375'
+      height='478'
+    />
+    <div class="film-play"><button class="btn-play"></button></div>
+  </div>
 </div>
 <div class='modal-film__film-content'>
   <h1 class='modal-film__film-name'>{{title}}</h1>
@@ -57,25 +70,17 @@
     <summary>ABOUT</summary>
     <p class='modal-film__about-text'>
       {{#if overview}}{{overview}}{{else}}<span>We don't have information for this movie.</span>{{/if}}
-          <iframe
-  {{!-- width="560"
-  height="315" --}}
-  src="https://www.youtube.com/embed/{{keyid}}"
-  title="YouTube video player"
-  frameborder="0"
-
-></iframe>
     </p>
 
   </details>
   </div>
   <div class="modal-film__btn-grup">
-              <button class="modal-film__btn" type="button" id="watched">
-                ADD TO WATCHED
-              </button>
-              <button class="modal-film__btn" type="button" id="queue">
-                ADD TO QUEUE
-              </button>
-            </div>
+    <button class="modal-film__btn" type="button" id="watched">
+      ADD TO WATCHED
+    </button>
+    <button class="modal-film__btn" type="button" id="queue">
+      ADD TO QUEUE
+    </button>
+  </div>
 
 </div>

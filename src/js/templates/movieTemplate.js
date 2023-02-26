@@ -3,7 +3,8 @@ import { refs } from '../reference';
 const { moviesList } = refs;
 
 const srcImgBase = 'https://image.tmdb.org/t/p/w500';
-let markup = '';
+export let markup = '';
+
 export function movieTemplate(data) {
   if (data.results) {
     const moviesResult = data.results;

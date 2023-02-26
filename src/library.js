@@ -10,17 +10,25 @@ import { addEfectRenderer } from './js/effect_for_cart';
 
 // відкриття модалки в бібліотеці
 import './js/film-modal';
+import './js/profile';
 
 // import { openTeamModal, closeTeamModal } from './js/team-modal';
+import AOS from 'aos';
+import 'aos/dist/aos.css';
+AOS.init();
 
 const { moviesList, watchedBtn, queueBtn } = refs;
-
+const user = localStorage.getItem('user');
 // ==============render info page================
 function renderInfoPage() {
   moviesList.innerHTML = '';
   const infoPage = document.createElement('strong');
   infoPage.classList.add('info-text');
-  infoPage.innerHTML = `No movies selected <a class="info-text__link" href="./index.html">Add a movie</a>`;
+  if (user) {
+    infoPage.innerHTML = `No movies selected <a class="info-text__link" href="./index.html">Add a movie</a>`;
+  } else {
+    infoPage.innerHTML = `To add a movie to the library, authorize`;
+  }
 
   return moviesList.append(infoPage);
 }

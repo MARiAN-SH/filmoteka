@@ -2,16 +2,18 @@
   margin-top: 20px;
   margin-bottom: 40px;
   padding-top: 10px;
+  overflow: hidden;
   @include tablet {
     margin-bottom: 60px;
     margin-top: 28px;
     display: flex;
+    justify-content: center;
     flex-wrap: wrap;
-    // margin-right: calc(-1 * 30px);
+    gap: 32px;
   }
 
   @include desktop {
-    margin-right: calc(-1 * 16px);
+    gap: 16px;
   }
 }
 
@@ -25,24 +27,22 @@
     box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.5);
   }
   &:hover .img {
-    transform: scale(1.12);
+    transform: scale(1.06);
   }
   &:hover .item__ptext {
-    padding-left: 30px;
+    padding: 10px 15px;
     background-color: #fff;
 
-    transform: scale(1.12);
+    transform: scale(1.05);
   }
 
   @include tablet {
     flex-basis: calc(100% / 2 - 32px);
-    margin-right: 32px;
     margin-top: 32px;
   }
 
   @include desktop {
     flex-basis: calc(100% / 3 - 16px);
-    margin-right: 16px;
   }
 }
 
@@ -82,7 +82,7 @@
   text-transform: uppercase;
   color: #000000;
   @include desktop {
-    font-size: 20px;
+    font-size: 19px;
     line-height: 1.2;
   }
 }
@@ -98,7 +98,7 @@
   line-height: 1.33;
   color: #ff6b08;
   @include desktop {
-    font-size: 20px;
+    font-size: 19px;
     line-height: 1.2;
   }
 }

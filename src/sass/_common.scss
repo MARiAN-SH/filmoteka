@@ -5,17 +5,27 @@ html {
 
 body {
   height: calc(100% - 217px);
-
   font-family: 'Roboto', sans-serif;
   color: var(--main-text-color);
   font-size: 12px;
   font-weight: var(--primary-font-weight);
   line-height: 1.17;
+
+  background-image: url(../images/filmBg.svg);
+  background-size: 120px;
+  background-repeat: repeat-y;
+  background-position-x: 0;
+
   overflow-x: hidden;
+  @include tablet {
+    background-size: 230px;
+  }
 }
+
 body.no-scroll {
   overflow-y: hidden;
 }
+
 .wrapper {
   display: flex;
   flex-direction: column;
@@ -29,7 +39,7 @@ main {
 }
 
 .container {
-  max-width: 280px;
+  max-width: 350px;
   margin: auto;
   padding: 0 10px;
   @include tablet {
@@ -38,4 +48,17 @@ main {
   @include desktop {
     max-width: 1216px;
   }
+}
+
+.container.movies__container {
+  padding: 0 40px;
+  @include tablet {
+    padding: 0;
+  }
+}
+
+#error {
+  text-align: center;
+  margin-top: 20px;
+  color: red;
 }

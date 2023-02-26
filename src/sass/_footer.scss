@@ -1,44 +1,53 @@
 .footer {
-  height: 100px;
   background-color: #f7f7f7;
-  padding-top: 29px;
-  padding-bottom: 29px;
+  padding-top: 30px;
+  padding-bottom: 30px;
   text-align: center;
-  @include tablet {
-    height: 79px;
-    padding-top: 30px;
-    padding-bottom: 30px;
-  }
-  @include desktop {
-    height: 77px;
-    padding-bottom: 28px;
-  }
-}
-
-.footer .container {
-  @include tablet {
-    display: flex;
-    justify-content: center;
-  }
 }
 
 .footer__text {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   font-weight: 400;
   font-size: 14px;
   line-height: 1.14;
   color: #545454;
 }
 
-.footer__text:last-child {
-  margin-top: 10px;
-  @include tablet {
-    margin-top: 0;
-    margin-left: 4px;
-  }
-}
-
 .heart {
-  color: var(--orange-text-color);
+  display: block;
+  margin-left: 3px;
+  font-size: 25px;
+  color: transparent;
+  background-image: linear-gradient(
+    180deg,
+    rgba(12, 84, 160, 1) 50%,
+    rgba(255, 237, 0, 1) 50%
+  );
+  background-clip: text;
+  -webkit-background-clip: text;
+  animation: heartbeat 1s infinite;
+  @keyframes heartbeat {
+    0% {
+      transform: scale(0.75);
+    }
+    20% {
+      transform: scale(1);
+    }
+    40% {
+      transform: scale(0.75);
+    }
+    60% {
+      transform: scale(1);
+    }
+    80% {
+      transform: scale(0.75);
+    }
+    100% {
+      transform: scale(0.75);
+    }
+  }
 }
 
 .team-modal-btn {

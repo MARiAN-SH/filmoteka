@@ -9,6 +9,7 @@ export async function getById(movieId) {
   // console.log(response);
   return response.data;
 }
+
 export async function getByVideo(id) {
   const response = await axios.get(
     `https://api.themoviedb.org/3/movie/${

@@ -2,12 +2,11 @@ import { getById } from './getById';
 import { getGenres } from './getGenres';
 
 import { refs } from './reference';
-const { modalWindowRef } = refs;
-
+const { modalFilm } = refs;
 let watchedMovies = [];
 let moviesInQueue = [];
 let movieObj = {};
-
+const user = localStorage.getItem('user');
 function getLocalStorageItem(localStorageKey) {
   return localStorage.getItem(`${localStorageKey}`);
 }
@@ -64,38 +63,46 @@ let filteredMoviesInQueue = [];
 
 async function onModalWindowClick(e) {
   const movieId = parseInt(e.currentTarget.id);
-  console.log(e.currentTarget.id);
 
-  await getById(movieId).then(data => {
-    movieObj = data;
-  });
+  if (user) {
+    await getById(movieId).then(data => {
+      movieObj = data;
+    });
 
-  const existWatchObj = watchedMovies.find(option => option.id === movieId);
-  const existQueueObj = moviesInQueue.find(option => option.id === movieId);
-
-  if (e.target.id === 'watched') {
-    if (existWatchObj === undefined) {
-      e.target.textContent = 'REMOVE FROM WATCHED';
-      watchedMovies.push(movieObj);
-    } else {
-      e.target.textContent = 'ADD TO WATCHED';
-      watchedMovies.splice(watchedMovies.indexOf(existWatchObj), 1);
+    const existWatchObj = watchedMovies.find(option => option.id === movieId);
+    const existQueueObj = moviesInQueue.find(option => option.id === movieId);
+    if (e.target.id === 'watched') {
+      if (existWatchObj === undefined) {
+        e.target.textContent = 'REMOVE FROM WATCHED';
+        watchedMovies.unshift(movieObj);
+      } else {
+        e.target.textContent = 'ADD TO WATCHED';
+        watchedMovies.splice(watchedMovies.indexOf(existWatchObj), 1);
+        location.reload();
+      }
+    } else if (e.target.id === 'queue') {
+      if (existQueueObj === undefined) {
+        e.target.textContent = 'REMOVE FROM QUEUE';
+        moviesInQueue.unshift(movieObj);
+      } else {
+        e.target.textContent = 'ADD TO QUEUE';
+        moviesInQueue.splice(moviesInQueue.indexOf(existQueueObj), 1);
+        location.reload();
+      }
     }
-  } else if (e.target.id === 'queue') {
-    if (existQueueObj === undefined) {
-      e.target.textContent = 'REMOVE FROM QUEUE';
-      moviesInQueue.push(movieObj);
-    } else {
-      e.target.textContent = 'ADD TO QUEUE';
-      moviesInQueue.splice(moviesInQueue.indexOf(existQueueObj), 1);
-    }
+
+    deleteWatchedMoviesDuplicates(watchedMovies);
+    deleteMoviesInQueueDuplicates(moviesInQueue);
+
+    localStorage.setItem(
+      'watchedMovies',
+      JSON.stringify(filteredWatchedMovies)
+    );
+    localStorage.setItem(
+      'moviesInQueue',
+      JSON.stringify(filteredMoviesInQueue)
+    );
   }
-
-  deleteWatchedMoviesDuplicates(watchedMovies);
-  deleteMoviesInQueueDuplicates(moviesInQueue);
-
-  localStorage.setItem('watchedMovies', JSON.stringify(filteredWatchedMovies));
-  localStorage.setItem('moviesInQueue', JSON.stringify(filteredMoviesInQueue));
 }
 function deleteWatchedMoviesDuplicates(movies) {
   filteredWatchedMovies = movies.filter((item, index) => {
@@ -112,7 +119,7 @@ function deleteMoviesInQueueDuplicates(movies) {
 }
 
 function delMmovie() {
-  modalWindowRef.addEventListener('click', onModalWindowClick);
+  modalFilm.addEventListener('click', onModalWindowClick);
 }
 
 export {
